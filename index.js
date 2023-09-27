@@ -439,13 +439,13 @@ app.post("/student/projects/upload", authenticateJwtStudent, upload, async (req,
     }
   });
 
-  //SEARCH FOR A PARTICULAR PROJECT ON THE MAIN PORTAL
+  
   app.post('/portal/seeProject',async(req,res)=>{
     const keyword = req.query.keyword.toLowerCase();
     const projects = await Projects.find({
         $or: [
-          { title: { $regex: keyword, $options: 'i' } }, 
-          { description: { $regex: keyword, $options: 'i' } }, 
+         
+          
           { tags: { $in: [keyword] } }, 
         ],
       }).select("-content")
