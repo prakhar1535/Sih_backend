@@ -448,7 +448,7 @@ app.post("/student/projects/upload", authenticateJwtStudent, upload, async (req,
           
           { tags: { $in: [keyword] } }, 
         ],
-      }).select("-content")
+      }).select("-content").populate("student").populate("student.collegeDetails.collegeId")
       if(!projects){
         res.status(404).json('No Projects Found')
       }
